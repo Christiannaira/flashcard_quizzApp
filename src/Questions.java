@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class Questions {
 
     int score;
-    ArrayList<String> questions = new ArrayList<>();
-    ArrayList<String> answers = new ArrayList<>();
+    private ArrayList<String> questions = new ArrayList<>();
+    private ArrayList<String> answers = new ArrayList<>();
 
     public Questions(int score){
         this.score = score;

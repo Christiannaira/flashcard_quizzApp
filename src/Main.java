@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -6,6 +7,9 @@ public class Main {
 
     public static void main(String[] args) {
 
+        Main main = new Main();
+        main.addEntries();
+
         System.out.println("============================= Welcome to FlashCard Quiz App =============================");
 
         Scanner scanner = new Scanner(System.in);
@@ -13,12 +17,11 @@ public class Main {
         String userSelection = scanner.nextLine();
 
         if (userSelection.trim().equalsIgnoreCase("start")){
-            System.out.println("begin");
+            main.userInteract(scanner);
         }
 
-        Main main = new Main();
-        main.addEntries();
-        main.getEntries();
+        scanner.close();
+
 
     }
 
@@ -32,10 +35,28 @@ public class Main {
 
     }
 
-    public void getEntries(){
+    public void userInteract(Scanner scanner){
 
-        System.out.println(questions.getQuestion());
-        System.out.println(questions.getAnswer());
+        ArrayList<String> questionList = questions.getQuestion();
+        int questionListSize = questions.getQuestion().size();
+
+        ArrayList<String> answerList = questions.getAnswer();
+
+        for (int i = 0; i < questionListSize; i++){
+
+            System.out.println("\n" + questionList.get(i));
+            String userAnswer=  scanner.nextLine();
+
+            if (i == answerList.indexOf(userAnswer)){
+                questions.score += 1;
+                System.out.println("correct");
+            } else {
+                System.out.println("wrong");
+            }
+
+        }
+
+        System.out.println("\nYou got " + questions.score + "/" + questionListSize);
 
     }
 
